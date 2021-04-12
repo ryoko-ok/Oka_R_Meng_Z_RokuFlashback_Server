@@ -20,13 +20,13 @@ const connect = require("../config/sqlConfig");
 //     res.json({message: "all users route"});
 // })
 
-router.get("/movies", (req, res) => {
+router.get("/adults_movie", (req, res) => {
     // run a SQL query here -> get all movies from my DB
     connect.getConnection(function(err, connection) {
         if (err) throw err; // not connected!
        
         // Use the connection
-        connection.query('SELECT * FROM tbl_movies', function (error, results) {
+        connection.query('SELECT * FROM tbl_adults_movie', function (error, results) {
           // When done with the connection, release it.
           connection.release();
        
@@ -41,9 +41,9 @@ router.get("/movies", (req, res) => {
 // dynamic route handler that can accept a parameter
 // this is equivalent to $_GET["id"] (req.params.id)
 // you're passing the id via the route: /api/movies/1, /api/movies/20, etc)
-router.get("/movies/:id", (req, res) => {
+router.get("/adults_movie/:id", (req, res) => {
     // run a SQL query here -> get all movies from my DB
-    connect.query(`SELECT * from tbl_movies WHERE movies_id=${req.params.id}`, function (error, results) {
+    connect.query(`SELECT * from tbl_adults_movie WHERE adults_movie_id=${req.params.id}`, function (error, results) {
 
         if (error) throw error;
         // console.log("results:", results, "fields:", fields);
