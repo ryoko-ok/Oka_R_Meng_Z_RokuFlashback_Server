@@ -66,7 +66,7 @@ router.get("/musics", (req, res) => {
     });
 })
 
-router.get("/music/:id", (req, res) => {
+router.get("/musics/:id", (req, res) => {
   connect.query(`SELECT * from tbl_music WHERE music_id=${req.params.id}`, function (error, results) {
 
       if (error) throw error;
