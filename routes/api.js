@@ -51,4 +51,51 @@ router.get("/movies/:id", (req, res) => {
       });
 })
 
+// music --------------------------------------------------------------
+router.get("/musics", (req, res) => {
+  connect.getConnection(function(err, connection) {
+      if (err) throw err; // not connected!
+     
+      connection.query('SELECT * FROM tbl_musics', function (error, results) {
+        connection.release();
+     
+        if (error) throw error;
+
+        res.json(results);
+      });
+    });
+})
+
+router.get("/music/:id", (req, res) => {
+  connect.query(`SELECT * from tbl_music WHERE music_id=${req.params.id}`, function (error, results) {
+
+      if (error) throw error;
+      res.json(results);
+    });
+})
+
+// tv --------------------------------------------------------------
+router.get("/tvs", (req, res) => {
+  connect.getConnection(function(err, connection) {
+      if (err) throw err; // not connected!
+     
+      connection.query('SELECT * FROM tbl_tvs', function (error, results) {
+        connection.release();
+     
+        if (error) throw error;
+
+        res.json(results);
+      });
+    });
+})
+
+router.get("/tvs/:id", (req, res) => {
+  connect.query(`SELECT * from tbl_tvs WHERE tvs_id=${req.params.id}`, function (error, results) {
+
+      if (error) throw error;
+      res.json(results);
+    });
+})
+
+
 module.exports = router;
